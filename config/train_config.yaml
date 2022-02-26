@@ -1,0 +1,18 @@
+model_args:
+  skeleton_feature_dim: 3
+  conv3D_out_dim: 256
+  graph: graph.kinetics.AdjMatrixGraph
+  num_scales: 8
+  window_size: 16
+  window_stride: 16
+  window_dilation: 1
+  vertices_fusion_out_dim: 2048
+  TPG_hidden_channels: [512,128,64]
+  num_class: 1
+  kappa: 8
+  TPG_dropout: 0.5
+  TPG_activation: relu
+  LSTM_hidden_channel: 1024
+  OAR_linear_hidden_channels: [512,128,64]
+  M: 5
+  OAR_dropout: 0.5
