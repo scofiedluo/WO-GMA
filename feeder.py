@@ -9,7 +9,7 @@ from torch.utils.data import Dataset
 
 
 class Feeder(Dataset):
-    def __init__(self, data_path, label_path, split_csv, frame_annota_path, window_size = 1000, use_mmap=True):
+    def __init__(self, data_path, label_path, split_csv, frame_annota_path, window_size = 6000, use_mmap=True):
         """
 
         """
@@ -73,4 +73,4 @@ class Feeder(Dataset):
             data_numpy_paded[:, begin:begin + T, :] = data_numpy
             return data_numpy_paded
         else:
-            return data_numpy
+            return data_numpy[:,:size,:]

@@ -7,12 +7,11 @@ model_args:
   window_stride: 16
   window_dilation: 1
   vertices_fusion_out_dim: 2048
-  TPG_hidden_channels: [512,128,64]
+  CPGB_hidden_channels: [512,128,64]
   num_class: 1
   kappa: 8
-  TPG_dropout: 0.5
-  TPG_activation: relu
+  CPGB_dropout: 0.5
+  CPGB_activation: relu
   LSTM_hidden_channel: 1024
-  OAR_linear_hidden_channels: [512,128,64]
-  M: 5
-  OAR_dropout: 0.5
+  OAMB_linear_hidden_channels: [512,128,64]
+  OAMB_dropout: 0.5

@@ -1,12 +1,9 @@
 import sys
 sys.path.insert(0, '')
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
-
-from model.MS_TCN import MultiScale_TemporalConv as MS_TCN
 from model.mlp import MLP
 from model.activation import activation_factory
 from graph.tools import k_adjacency, normalize_adjacency_matrix
@@ -23,7 +20,7 @@ class UnfoldTemporalWindows(nn.Module):
         self.window_dilation = window_dilation
 
         # somthing like pad = (kernel_size + (kernel_size-1) * (dilation-1) - 1) // 2 in MS_TCN
-        self.padding = (window_size + (window_size-1) * (window_dilation-1) - 1) // 2  
+        self.padding = (window_size + (window_size-1) * (window_dilation-1) - 1) // 2
         self.unfold = nn.Unfold(kernel_size=(self.window_size, 1),
                                 dilation=(self.window_dilation, 1),
                                 stride=(self.window_stride, 1),
@@ -35,7 +32,8 @@ class UnfoldTemporalWindows(nn.Module):
         x = self.unfold(x)
         # Permute extra channels from window size to the graph dimension; -1 for number of windows
         x = x.view(N, C, self.window_size, -1, V).permute(0,1,3,2,4).contiguous()
-        x = x.view(N, C, -1, self.window_size * V)   #formalize 3D graph with self.window_size * V nodes
+        # formalize 3D graph with self.window_size * V nodes
+        x = x.view(N, C, -1, self.window_size * V)
         return x
 
 
@@ -76,7 +74,8 @@ class SpatialTemporal_MS_GCN(nn.Module):
         else:
             self.A_res = torch.tensor(0)
 
-        self.mlp = MLP(in_channels * num_scales, [out_channels], dropout=dropout, activation='linear')
+        self.mlp = MLP(in_channels * num_scales, [out_channels],
+                       dropout=dropout, activation='linear')
 
         # Residual connection
         if not residual:
@@ -112,4 +111,3 @@ class SpatialTemporal_MS_GCN(nn.Module):
         out = self.mlp(agg)
         out += res
         return self.act(out)
-
