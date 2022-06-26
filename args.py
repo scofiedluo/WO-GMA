@@ -1,6 +1,6 @@
 import argparse
 import os
-import random
+
 
 def get_parser():
     # parameter priority: command line > config file > default
@@ -26,20 +26,25 @@ def get_parser():
         help='the number of worker for data loader')
 
     # data
-    parser.add_argument('--data_path', type=str, default='data/GMs_data/all_v3/processed_data_joint.npy',
+    parser.add_argument('--data_path', type=str,
+        default='data/GMs_data/all_v3/processed_data_joint.npy',
         help='the path to all data')
-    parser.add_argument('--label_path', type=str, default='data/GMs_data/all_v3/processed_label.pkl',
+    parser.add_argument('--label_path', type=str,
+        default='data/GMs_data/all_v3/processed_label.pkl',
         help='the path to all labels')
-    parser.add_argument('--video_info_path', type=str, default='data/video_info/video_info.csv',
+    parser.add_argument('--video_info_path', type=str,
+        default='data/video_info/video_info.csv',
         help='the path to video info')
-    parser.add_argument(
-        '--split_test_csv_path', type=str, default='data/GMs_data/split_v5/fold3_val.csv',
+    parser.add_argument('--split_test_csv_path', type=str,
+        default='data/GMs_data/split_v5/fold3_val.csv',
         help='the data split csv')
-    parser.add_argument('--split_train_csv_path', type=str, default='data/GMs_data/split_v5/fold3_train.csv',
+    parser.add_argument('--split_train_csv_path', type=str,
+        default='data/GMs_data/split_v5/fold3_train.csv',
         help='the data split csv')
-    parser.add_argument('--frame_annotations', type=str, default='data/frame_level_annotations/temporal_labels_v2.csv',
+    parser.add_argument('--frame_annotations', type=str,
+        default='data/frame_level_annotations/temporal_labels_v2.csv',
         help='path to frame annotations .csv file')
-    
+
     parser.add_argument('--action_classes', type=str, default=['F+'], nargs='+',
         help='action classes list of datasets')
 
@@ -80,9 +85,11 @@ def get_parser():
         help='OAMB action score threshold')
     parser.add_argument('--OAMB_precent', type=float, default=0.05,
         help='OAMB video level action judge precentage, if num(s>OAMB_thresh)/len > OAMB_precent, prediction True')
-    
-    parser.add_argument('--weights', default=None, help='the weights for network initialization')
-    parser.add_argument('--base-lr', type=float, default=0.00005, help='initial learning rate')
+
+    parser.add_argument('--weights', default=None,
+        help='the weights for network initialization')
+    parser.add_argument('--base-lr', type=float, default=0.00005,
+        help='initial learning rate')
     parser.add_argument('--device', type=int, default=0,
         help='the index of GPU for training or testing')
     parser.add_argument('--batch-size', type=int, default=16,
@@ -93,10 +100,12 @@ def get_parser():
         help='stop training in which epoch')
     parser.add_argument('--num-epoch', type=int, default=100,
         help='stop training in which epoch')
-    parser.add_argument('--checkpoint', type=str, default='training_results/formal_train_v3.13--16/model.pt',
+    parser.add_argument('--checkpoint', type=str,
+        default='training_results/formal_train_v3.13--16/model.pt',
         help='path of previously saved training checkpoint')
 
     return parser
+
 
 def str2bool(v):
     if v.lower() in ('yes', 'true', 't', 'y', '1'):

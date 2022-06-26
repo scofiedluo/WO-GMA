@@ -48,7 +48,7 @@ class Model(nn.Module):
     """
     model integrating
 
-    @param:
+    @param: args, device
 
     """
     def __init__(self, args, device):

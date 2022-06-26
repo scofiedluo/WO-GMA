@@ -160,3 +160,6 @@ git_back
 *.txt
 *.csv
 *.json
+
+.vscode
+run/

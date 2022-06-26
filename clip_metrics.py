@@ -111,8 +111,8 @@ def getlocmap(predictions, gts_df, video_names, iou_list, thres=0.7):
                     break
                 segment_gt.append([i, int(gtsegments[i][j][0]/20), int(gtsegments[i][j][1]/20)])
         # gtpos = len(segment_gt)
-        print("len(segment_gt):", len(segment_gt))
-        print("len(segment_predict):",len(segment_predict))
+        print("Number of ground truth instances:", len(segment_gt))
+        print("Number of prediction instances:",len(segment_predict))
         segment_gt_df = pd.DataFrame({
             "video-id": list(np.array(segment_gt)[:,0]),
             "t-start": list(np.array(segment_gt)[:,1]),

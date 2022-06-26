@@ -29,14 +29,11 @@ class VerticesFusion(nn.Module):
         if fusion_type == 'nodeConv':
             self.fusion_method = nn.Conv2d(self.in_channels,self.out_channels,kernel_size=(1,self.node_nums))
         else:
-            # TODO: there can be adjust in future work
             self.fusion_method = nn.Identity()
-
         self.BN = nn.BatchNorm1d(self.out_channels)
 
     def forward(self,x):
         x = self.fusion_method(x)
         x = x.squeeze(dim=3)
         x = self.BN(x)
-
         return self.act(x)
