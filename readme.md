@@ -76,7 +76,12 @@ python inference.py --work-dir 'inference_results/' \
 ### Citation
 If you find this work or code is helpful in your research, please cite:
 ```
-
+@article{luo2022weakly,
+  title={Weakly Supervised Online Action Detection for Infant General Movements},
+  author={Luo, Tongyi and Xiao, Jia and Zhang, Chuncao and Chen, Siheng and Tian, Yuan and Yu, Guangjun and Dang, Kang and Ding, Xiaowei},
+  journal={arXiv preprint arXiv:2208.03648},
+  year={2022}
+}
 ```
 
 ### Contact
